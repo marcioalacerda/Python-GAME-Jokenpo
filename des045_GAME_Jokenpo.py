@@ -1,20 +1,56 @@
-''' Programa que faz o computador jogar "Jokenpô" com você.'''
-from random import choice
+''' Melhorando o programa, agora alem de jogar com você, o computador da as opções em numeros e jogo como se fosse outra pessoa pessoa joga "Jokenpô"'''
 from time import sleep # faz o computador esperar em segundos
 from termcolor import colored # para dar cor no seu
-lista = ['PEDRA', 'PAPEL', 'TESOURA']
+from random import randint
 
-computador = choice(lista) # faz o computador "PENSAR"
-#print(computador)
-print(colored('-=-', 'yellow') * 20)
-print('  Vamos jogar Jokenpô. Tente acertar...')
-print(colored('-=-', 'yellow') * 20)
-jogador = str(input('Escolha Pedra, Papel ou Tesoura: ')).upper() # jogador tenta adivinhar
-#print(jogador)
-print(colored('PROCESSANDO...', 'magenta'))
-sleep(3)
-if (jogador == 'PAPEL' and computador == 'PEDRA') or (jogador == 'PEDRA' and computador == 'TESOURA') or (jogador == 'TESOURA' and computador == 'PAPEL'):
-    print(colored('PARABÉNS! Você conseguiu me vencer!', 'green'))
-    print(colored('Você jogou {} e eu joguei {}', 'yellow').format(jogador, computador))
-elif(computador == 'PAPEL' and jogador == 'PEDRA') or (computador == 'PEDRA' and jogador == 'TESOURA') or (computador == 'TESOURA' and jogador == 'PAPEL'):
-    print(colored('GANHEI! Eu joguei {} e você jogou {}', 'red').format(computador, jogador))
+print(colored('-=-', 'yellow') * 15)
+print('    Vamos jogar Jokenpô. Tente ganhar...')
+print(colored('-=-', 'yellow') * 15)
+
+itens = ('Pedra', 'Papel', 'Tesoura')
+computador = randint(0, 2)
+print('''SUAS OPÇÔES:
+[0] PEDRA
+[1] PAPEL
+[2] TESOURA''')
+jogador = int(input('Qual é a sua jogada? '))
+print(colored('JO...', 'magenta'))
+sleep(1)
+print(colored('KEN...', 'magenta'))
+sleep(1)
+print(colored('PÔ!!!', 'magenta'))
+
+print(colored('-=-', 'yellow') * 11)
+print('Computador jogou {}'.format(itens[computador]))
+print('Jogador jogou {}'.format(itens[jogador]))
+print(colored('-=-', 'yellow') * 11)
+
+if computador == 0: #pedra
+    if jogador == 0:
+        print('EMPATOU!')
+    elif jogador == 1:
+        print(colored('PARABÉNS!!! JOGADOR VENCEU!', 'green'))
+    elif jogador == 2:
+        print('COMPUTADOR VENCEU!')
+    else:
+        print(colored('JOGADA INVALIDA!', 'red'))
+
+elif computador ==1: #papel
+    if jogador == 0:
+        print('COMPUTADOR VENCEU!')
+    elif jogador == 1:
+        print('EMPATOU!')
+    elif jogador == 2:
+        print('JOGADOR VENCEU!')
+    else:
+        print(colored('JOGADA INVALIDA!', 'red'))
+
+elif computador ==2: #tesoura
+    if jogador == 0:
+        print('JOGADOR VENCEU!')
+    elif jogador == 1:
+        print('COMPUTADOR VENCEU!')
+    elif jogador == 2:
+        print('EMPATOU!')
+    else:
+        print(colored('JOGADA INVALIDA!', 'red'))
